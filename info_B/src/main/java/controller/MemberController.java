@@ -97,9 +97,9 @@ public class MemberController extends HttpServlet {
 			//id,pwd 있는 회원이 존재하는지 확인 메소드를 만드시오.
 			//member id, pwd vaild method create
 			MemberDao md = new MemberDao();
-			int result = md.memberLogin(memberid, memberpwd);
+			MemberVo mv = md.memberLogin(memberid, memberpwd);
 			
-			if(result == 0) {
+			if(mv == null) {
 				//해당 회원이 존재하지 않을 경우
 				response.sendRedirect(request.getContextPath()+"/member/memberLogin.do");		
 				
@@ -107,10 +107,15 @@ public class MemberController extends HttpServlet {
 				//session 변수 활용
 				//-어느 페이지를 가도 세션변수를 사용할 수 있음 
 				HttpSession session = request.getSession();
-				session.setAttribute("memberid", memberid);
-				
+				session.setAttribute("memberid", mv.getMemberid());
+				session.setAttribute("membername",mv.getMembername());
+				String link = (String)session.getAttribute("link");
+				if(link != null) {
+					response.sendRedirect(link);
+				}else {
 				//page load
-				response.sendRedirect(request.getContextPath()+"/");						
+				response.sendRedirect(request.getContextPath()+"/");
+				}
 			}
 	
 		}else if(str.equals("memberLogin.do")) {

@@ -35,6 +35,10 @@ public class FrontController extends HttpServlet {
 			//System.out.println("member controller object create ");
 			MemberController mc = new MemberController();
 			mc.doGet(request, response,st2);
+		}else if(st.equals("board")) {
+			System.out.println("call doget");
+			BoardController bc = new BoardController();
+			bc.doGet(request, response,st2);
 		}
 		
 		

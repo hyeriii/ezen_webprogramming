@@ -93,11 +93,12 @@ public class MemberDao {
 	
 	
 	//member vaild check method
-	public int memberLogin(String memberid, String memberpwd) {
+	public MemberVo memberLogin(String memberid, String memberpwd) {
 		int value=0;
 		ResultSet rs=null;
+		MemberVo mv = null;
 		try {
-			String sql = "select count(*) as cnt from bclass_member2 where memberid= ? and memberpwd= ?";
+			String sql = "select membername,memberid, memberpwd from bclass_member2 where memberid= ? and memberpwd= ?";
 			
 			pstmt= conn.prepareStatement(sql);
 			pstmt.setString(1, memberid);
@@ -108,9 +109,12 @@ public class MemberDao {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				value=rs.getInt("cnt");
-				
+				mv = new MemberVo();
+				mv.setMembername(rs.getString("membername"));
+				mv.setMemberid(rs.getString("memberid"));
+				mv.setMemberpwd(rs.getString("memberpwd"));
 			}
+			
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -124,7 +128,7 @@ public class MemberDao {
 			}
 			
 		}
-		return value; 
+		return mv; 
 	}
 	
 	

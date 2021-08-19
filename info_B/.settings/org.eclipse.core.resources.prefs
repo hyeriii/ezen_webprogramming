@@ -1,3 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/main/webapp/main.jsp=UTF-8
+encoding//src/main/webapp/memberInfo.jsp=UTF-8
 encoding//src/main/webapp/memberJoin.jsp=UTF-8
+encoding//src/main/webapp/memberList.jsp=UTF-8
+encoding//src/main/webapp/memberLogin.jsp=UTF-8
