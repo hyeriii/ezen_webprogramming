@@ -40,7 +40,6 @@ public class BoardController extends HttpServlet {
 				
 				RequestDispatcher rd = request.getRequestDispatcher("/boardList.jsp");
 				rd.forward(request, response);
-
 			}
 		}else if(str.equals("boardWrite.do")) {
 			RequestDispatcher rd = request.getRequestDispatcher("/boardWrite.jsp");

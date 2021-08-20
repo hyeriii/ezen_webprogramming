@@ -59,6 +59,5 @@ public class BoardVo {
 	public void setMidx(int midx) {
 		this.midx = midx;
 	}
-	
-	
+
 }

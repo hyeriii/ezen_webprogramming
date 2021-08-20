@@ -30,6 +30,7 @@ public class BoardDao {
 				System.out.println("prepareStatement(sql);");
 				rs = pstmt.executeQuery();
 				System.out.println("rs = pstmt.executeQuery();");
+				
 				while(rs.next()) {
 					BoardVo bv = new BoardVo();
 					bv.setBidx(rs.getInt("bidx"));

@@ -3,7 +3,7 @@
     pageEncoding="EUC-KR"%>
 <%@page import="service.BoardVo" %>
 <%@page import="java.util.*" %>
- <% ArrayList<BoardVo> alist = (ArrayList<BoardVo>)request.getAttribute("alist");%>
+<% ArrayList<BoardVo> alist = (ArrayList<BoardVo>)request.getAttribute("alist");%>
 <!DOCTYPE html>
 <html>
 <head>

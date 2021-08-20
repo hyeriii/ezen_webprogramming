@@ -21,7 +21,6 @@ function check(){
 		alert("작성자를 입력하세요");
 		return false;
 	}
-	
 	fm.action = "<%=request.getContextPath()%>/board/boardWriteAction.do";
 	fm.method="post";
 	submit();

@@ -11,7 +11,7 @@
 <a href="<%=request.getContextPath()%>/member/memberJoin.do">회원가입하기</a>
 <a href="<%=request.getContextPath()%>/member/memberLogin.do">로그인하기</a>
 <a href="<%=request.getContextPath()%>/member/memberList.do">리스트가기</a>
-<a href="<%=request.getContextPath()%>/board/boardList.do">게시글 리스트가기</a>
+<a href="<%=request.getContextPath()%>/board/boardList.do">게시글 리스트</a>
 <% if(session.getAttribute("memberid") != null){%>
 <button onclick="document.location.href='<%=request.getContextPath()%>/member/memberLogout.do'">로그아웃</button>
 <% } %>
