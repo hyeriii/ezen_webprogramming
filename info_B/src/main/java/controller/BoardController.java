@@ -50,8 +50,12 @@ public class BoardController extends HttpServlet {
 			String writer = request.getParameter("writer");
 			String ip = InetAddress.getLocalHost().getHostAddress();
 			
+			//session midx 값 받아오기 
+			HttpSession session = request.getSession();
+			int midx = (int)session.getAttribute("midx");
+			
 			BoardDao bd = new BoardDao();
-			int result =bd.boardWrite(subject, contents, writer, ip);
+			int result =bd.boardWrite(subject, contents, writer, ip, midx);
 			if(result == 1) {
 				response.sendRedirect(request.getContextPath()+"/board/boardList.do");	
 			}

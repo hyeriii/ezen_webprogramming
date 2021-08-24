@@ -98,7 +98,7 @@ public class MemberDao {
 		ResultSet rs=null;
 		MemberVo mv = null;
 		try {
-			String sql = "select membername,memberid, memberpwd from bclass_member2 where memberid= ? and memberpwd= ?";
+			String sql = "select membername,memberid, memberpwd,midx from bclass_member2 where memberid= ? and memberpwd= ?";
 			
 			pstmt= conn.prepareStatement(sql);
 			pstmt.setString(1, memberid);
@@ -113,6 +113,8 @@ public class MemberDao {
 				mv.setMembername(rs.getString("membername"));
 				mv.setMemberid(rs.getString("memberid"));
 				mv.setMemberpwd(rs.getString("memberpwd"));
+				mv.setMidx(rs.getInt("midx"));
+				System.out.println("로그인 체크 DAo"+mv.getMidx());
 			}
 			
 		}catch(SQLException e) {

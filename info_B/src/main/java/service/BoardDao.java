@@ -21,32 +21,30 @@ public class BoardDao {
 	
 	public ArrayList<BoardVo> selectAll() {
 		
-		String sql ="select * from bclass_board";
+		String sql ="select * from bclass_board where delyn ='N' order by originbidx desc, depth";
 		ArrayList<BoardVo> alist = new ArrayList();
 		System.out.println("Dao class입니다");
 		
 		try {
 				pstmt = conn.prepareStatement(sql);
-				System.out.println("prepareStatement(sql);");
 				rs = pstmt.executeQuery();
-				System.out.println("rs = pstmt.executeQuery();");
-				
+
 				while(rs.next()) {
 					BoardVo bv = new BoardVo();
 					bv.setBidx(rs.getInt("bidx"));
 					bv.setSubject(rs.getString("subject"));
 					bv.setWriteday(rs.getString("writeday"));
+					bv.setNlevel(rs.getInt("nlevel"));
 					alist.add(bv);
 				}
 		} catch (SQLException e) {
-			System.out.println("sql오류야");
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 		return alist;
 	}
 	
-	public int boardWrite(String subject, String contents, String writer,String ip) {
-		String sql = "insert into bclass_board(BIDX,CONTENTS,SUBJECT,WRITER,ip) values(bidx_seq.nextval,?,?,?,?)";
+	public int boardWrite(String subject, String contents, String writer,String ip,int midx) {
+		String sql = "insert into bclass_board(BIDX,ORIGINBIDX,DEPTH,NLEVEL,CONTENTS,SUBJECT,WRITER,ip,midx) values(bidx_seq.nextval,bidx_seq.nextval,0,0,?,?,?,?,?)";
 		int result=0;
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -54,9 +52,10 @@ public class BoardDao {
 			pstmt.setString(2, contents);
 			pstmt.setString(3, writer);
 			pstmt.setString(4, ip);
+			pstmt.setInt(5, midx);
 			
 			result = pstmt.executeUpdate();
-			
+		
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}

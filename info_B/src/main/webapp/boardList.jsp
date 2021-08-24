@@ -22,8 +22,19 @@
 <% for(BoardVo bv: alist){ %>
 	<tr>
 	<td><%=bv.getBidx() %></td>
-	<td><%=bv.getSubject()%></td>
-	<td><%=bv.getWriteday() %></td>
+	
+	<td>
+	<%for(int i =1; i<=bv.getNlevel() ; i++){
+		out.print("&nbsp; &nbsp;");
+		if(i == bv.getNlevel()){
+			out.print("¤¤");		
+		}
+	}
+		out.print(bv.getSubject());%>
+		
+	</td>
+
+	<td><%=bv.getWriteday()%></td>
 	</tr>
 <% } %>
 </table>

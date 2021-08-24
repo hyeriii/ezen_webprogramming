@@ -36,7 +36,7 @@ public class FrontController extends HttpServlet {
 			MemberController mc = new MemberController();
 			mc.doGet(request, response,st2);
 		}else if(st.equals("board")) {
-			System.out.println("call doget");
+			System.out.println("call do get");
 			BoardController bc = new BoardController();
 			bc.doGet(request, response,st2);
 		}

@@ -109,6 +109,8 @@ public class MemberController extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("memberid", mv.getMemberid());
 				session.setAttribute("membername",mv.getMembername());
+				session.setAttribute("midx", mv.getMidx());
+				
 				String link = (String)session.getAttribute("link");
 				if(link != null) {
 					response.sendRedirect(link);

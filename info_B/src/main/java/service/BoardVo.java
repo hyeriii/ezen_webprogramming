@@ -3,6 +3,9 @@ package service;
 public class BoardVo {
 
 	private int bidx;
+	private int originbidx;
+	private int depth;
+	private int nlevel;
 	private String contents;
 	private String subject;
 	private String writer;
@@ -60,4 +63,22 @@ public class BoardVo {
 		this.midx = midx;
 	}
 
+	public int getOriginbidx() {
+		return originbidx;
+	}
+	public void setOriginbidx(int originbidx) {
+		this.originbidx = originbidx;
+	}
+	public int getDepth() {
+		return depth;
+	}
+	public void setDepth(int depth) {
+		this.depth = depth;
+	}
+	public int getNlevel() {
+		return nlevel;
+	}
+	public void setNlevel(int nlevel) {
+		this.nlevel = nlevel;
+	}
 }
