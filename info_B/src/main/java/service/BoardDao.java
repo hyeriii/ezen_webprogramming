@@ -61,4 +61,27 @@ public class BoardDao {
 		}
 		return result;
 	}
+	
+	public BoardVo boardSelectOne(int bidx) {
+		
+		BoardVo bv = null;
+		String sql ="select viewcount, subject, contents, writer from bclass_board where bidx=?";
+		
+		try {
+			System.out.println("boardSelectOne(int bidx) ~~~~");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bidx);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+			bv = new BoardVo();
+			bv.setViewcount(rs.getInt("viewcount"));
+			bv.setSubject(rs.getString("subject"));
+			bv.setContents(rs.getString("contents"));
+			bv.setWriter(rs.getString("writer"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return bv;
+	}
 }

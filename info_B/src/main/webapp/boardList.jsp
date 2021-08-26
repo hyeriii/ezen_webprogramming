@@ -8,15 +8,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>board List</title>
 </head>
 <body>
 &lt; boardList page &gt;
 <table border = 1>
-	<tr>
+	<tr bgcolor = #A9A9A9>
 		<td>번호</td>
-		<td>제목</td>
-		<td>작성날짜</td>
+		<td style="width:200px;">제목</td>
+		<td style="width:200px;">작성날짜</td>
 	</tr>
 	
 <% for(BoardVo bv: alist){ %>
@@ -30,8 +30,8 @@
 			out.print("ㄴ");		
 		}
 	}
-		out.print(bv.getSubject());%>
-		
+	%>
+	<a href="<%=request.getContextPath()%>/board/boardContents.do?bidx=<%=bv.getBidx()%>"><%=bv.getSubject()%></a>	
 	</td>
 
 	<td><%=bv.getWriteday()%></td>

@@ -59,6 +59,29 @@ public class BoardController extends HttpServlet {
 			if(result == 1) {
 				response.sendRedirect(request.getContextPath()+"/board/boardList.do");	
 			}
+		}else if(str.equals("boardContents.do")) {
+			String bidx = request.getParameter("bidx");
+			int bidx2 = Integer.parseInt(bidx);
+			System.out.println(bidx);
+			
+			//bidx에 맞는 contents 가져오는 메소드 call
+			BoardDao bd = new BoardDao();
+			BoardVo bv = bd.boardSelectOne(bidx2);
+			System.out.println(bv.getSubject() + ","+bv.getContents());
+			request.setAttribute("bv", bv);
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/boardContents.jsp");
+			rd.forward(request, response);
+		}else if(str.equals("boardModify.do")) {
+			String bidx = request.getParameter("bidx");
+			System.out.println("수정 컨트롤러"+bidx);
+			int bidx2 = Integer.parseInt(bidx);
+			BoardDao bd = new BoardDao();
+			BoardVo bv = bd.boardSelectOne(bidx2);
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/boardModify.jsp");
+			rd.forward(request, response);
+			
 		}
 	}
 
