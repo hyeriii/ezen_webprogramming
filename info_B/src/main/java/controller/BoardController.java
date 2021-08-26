@@ -79,9 +79,21 @@ public class BoardController extends HttpServlet {
 			BoardDao bd = new BoardDao();
 			BoardVo bv = bd.boardSelectOne(bidx2);
 			
+			request.setAttribute("bv", bv);
+			
 			RequestDispatcher rd = request.getRequestDispatcher("/boardModify.jsp");
 			rd.forward(request, response);
+		}else if(str.equals("boardModifyAction.do")) {
+			String subject = request.getParameter("subject");
+			String contents = request.getParameter("contents");
+			String writer = request.getParameter("writer");
+			String bidx = request.getParameter("bidx");
 			
+			//modify data update method call
+			BoardDao bd = new BoardDao();
+			int result = bd.boardModify(subject, contents, writer, bidx);
+			System.out.print("modify : " + result);
+			response.sendRedirect(request.getContextPath()+"/board/boardList.do");
 		}
 	}
 

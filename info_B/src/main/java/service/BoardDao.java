@@ -65,7 +65,7 @@ public class BoardDao {
 	public BoardVo boardSelectOne(int bidx) {
 		
 		BoardVo bv = null;
-		String sql ="select viewcount, subject, contents, writer from bclass_board where bidx=?";
+		String sql ="select viewcount, subject, contents, writer,bidx from bclass_board where bidx=?";
 		
 		try {
 			System.out.println("boardSelectOne(int bidx) ~~~~");
@@ -78,10 +78,32 @@ public class BoardDao {
 			bv.setSubject(rs.getString("subject"));
 			bv.setContents(rs.getString("contents"));
 			bv.setWriter(rs.getString("writer"));
+			bv.setBidx(rs.getInt("bidx"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return bv;
+	}
+	
+	//modify 
+	public int boardModify(String subject, String contents,String writer, String bidx) {
+		int result=0;
+		String sql = "update bclass_board set subject=?, contents=?, writer=? where bidx=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, subject);
+			pstmt.setString(2, contents);
+			pstmt.setString(3, writer);
+			pstmt.setString(4, bidx);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 }
